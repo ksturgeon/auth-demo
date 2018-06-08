@@ -10,7 +10,7 @@
   d.  Creates a Drill View with a subset of data, and moves this into its own volume.  
    
 **At this point, data exists in the MapR filesystem in two formats - raw file data (/demo/demo-data/business.json) and a MapR-DB database table (/demo/demo-table/yelp-business-table).  
-Because of the Volume permissions, and the default permissions in the MapR Databse, ONLY the "mapr" user has access to this data.**
+Because of the Volume permissions, and the default permissions in the MapR Database, ONLY the "mapr" user has access to this data.**
 
 Try this;  
   A.  Connect to Drill as "mapr" user (if using Drill 1.12 or greater, you can use the web UI and provide an identity when running the query) via sqlline ```sqlline -u jdbc:drill:drillbit=<DRILLBITHOST>:31010 -n mapr```  
