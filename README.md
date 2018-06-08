@@ -1,25 +1,16 @@
-Helper scripts to demonstrate data authorization in a MapR Cluster
+# Helper scripts to demonstrate data authorization in a MapR Cluster
 
 1.  Unzip the business.json.gzip file ```gunzip business.json.zip```
-
-2.  If needed, run the setup-user.sh script to add a user and group 'user1:group1' - not necessary if you have other users configured in the cluster.
-
-3.  Modify the setup-data.sh script - replace the IP address in the sqlline command with one of the drillbit IPs for your cluster
-
-4.  Run the setup-data.sh script.  This will;
-
-   a.  Create appropriate volumes - note one of them "/demo-data" is created with restrictive permissions to simulate a "raw" landing zone for data.
+2.  If needed, run the ```setup-user.sh``` script to add a user and group 'user1:group1' - not necessary if you have other users configured in the cluster.
+3.  Modify the ```setup-data.sh``` script - replace the IP address in the sqlline command with one of the drillbit IPs for your cluster
+4.  Run the ```setup-data.sh``` script.  This will;
+  a.  Create appropriate volumes - note one of them "/demo-data" is created with restrictive permissions to simulate a "raw" landing zone for data.
+  b.  Takes the uncompressed json file and copies it to this restrictive volume.
+  c.  Runs a mapr command to load this json file into a MapR-DB Document Database.
+  d.  Creates a Drill View with a subset of data, and moves this into its own volume.
    
-   b.  Takes the uncompressed json file and copies it to this restrictive volume.
-   
-   c.  Runs a mapr command to load this json file into a MapR-DB Document Database.
-   
-   d.  Creates a Drill View with a subset of data, and moves this into its own volume.
-   
-
-At this point, data exists in the MapR filesystem in two formats - raw file data (/demo/demo-data/business.json) and a MapR-DB database table (/demo/demo-table/yelp-business-table).  
-
-Because of the Volume permissions, and the default permissions in the MapR Databse, ONLY the "mapr" user has access to this data.
+**At this point, data exists in the MapR filesystem in two formats - raw file data (/demo/demo-data/business.json) and a MapR-DB database table (/demo/demo-table/yelp-business-table).  
+**Because of the Volume permissions, and the default permissions in the MapR Databse, ONLY the "mapr" user has access to this data.
 
 Try this;
 
