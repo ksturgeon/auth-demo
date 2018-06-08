@@ -27,8 +27,8 @@ mapr importJSON -idfield "business_id" -src /demo/demo-data/business.json -dst /
 
 # Create drill views - replace with your IP address - could also use a zk connection
 echo "Create Drill Views - replace with the IP of a drillbit"
-echo "sqlline -u jdbc:drillbit=172.16.2.222:31010 -u mapr --run=create-views.sql"
-sqlline -u jdbc:drillbit=172.16.2.222:31010 -u mapr --run=create-views.sql
+echo "sqlline -u jdbc:drill:drillbit=172.16.2.222:31010 -n mapr --run=create-views.sql"
+sqlline -u jdbc:drill:drillbit=172.16.2.222:31010 -n mapr --run=create-views.sql
 
 # Since we can rely on tmp workspace as writeable, we created the view there, now copy to the right volume
 echo "We created the view in /tmp, now copy to the volume we created"
