@@ -1,6 +1,6 @@
 Helper scripts to demonstrate data authorization in a MapR Cluster
 
-1.  Unzip the business.json.gzip file 'gunzip business.json.zip'
+1.  Unzip the business.json.gzip file ```gunzip business.json.zip```
 
 2.  If needed, run the setup-user.sh script to add a user and group 'user1:group1' - not necessary if you have other users configured in the cluster.
 
@@ -17,11 +17,11 @@ At this point, data exists in the MapR filesystem in two formats - raw file data
 Because of the Volume permissions, and the default permissions in the MapR Databse, ONLY the "mapr" user has access to this data.
 
 Try this;
-  A.  Connect to Drill as "mapr" user (if using Drill 1.12 or greater, you can use the web UI and provide an identity when running the query) via sqlline "sqlline -u jdbc:drill:drillbit=<DRILLBITHOST>:31010 -n mapr".
-  B.  Query the file data ">select * from dfs.`/demo/demo-data/business.json` limit 10;"
-  C.  Query the DB Table ">select * from dfs.`/demo/demo-table/yelp-busines-table` limit 10;"
-  D.  Disconnect from sqlline ">!quit"
-  E.  Reconnect using a different user (user1 if that's what you've set up - or any other user should work) "sqlline -u jdbc:drill:drillbit=<DRILLBITHOST>:31010 -n user1"
+  A.  Connect to Drill as "mapr" user (if using Drill 1.12 or greater, you can use the web UI and provide an identity when running the query) via sqlline ```sqlline -u jdbc:drill:drillbit=<DRILLBITHOST>:31010 -n mapr```.
+  B.  Query the file data ```>select * from dfs.`/demo/demo-data/business.json` limit 10;```
+  C.  Query the DB Table ```>select * from dfs.`/demo/demo-table/yelp-busines-table` limit 10;```
+  D.  Disconnect from sqlline ```>!quit```
+  E.  Reconnect using a different user (user1 if that's what you've set up - or any other user should work) ```sqlline -u jdbc:drill:drillbit=<DRILLBITHOST>:31010 -n user1```
   F.  Run the same queries in A&B - note you cannot access the file, and only the document ID is returned for the DB table.  You could further restrict access by default to the DB table by setting up the Volume ACE to not be 'p' (public)
   G.  Extra Credit - if you log into a terminal session as another user, you can't even "ls" the /mapr/clustername/demo/demo-data/ directory.
 
@@ -34,8 +34,8 @@ Let's create some better access controls.
 
 Try this now;
   A.  Connect to Drill as "user1" or any other user
-  B.  Query the view ">select * from dfs.`/demo/demo-views/short_business` limit 10;"  Note you can only see a few fields.
-  C.  Query the MapR-DB Table ">select * from dfs.`/demo/demo-table/yelp-business-table` limit 10;  Note the "address" and "attributes" fields are missing.
+  B.  Query the view ```>select * from dfs.`/demo/demo-views/short_business` limit 10;```  Note you can only see a few fields.
+  C.  Query the MapR-DB Table ```>select * from dfs.`/demo/demo-table/yelp-business-table` limit 10;```  Note the "address" and "attributes" fields are missing.
 
 Summary:
 Basically, we have restricted access in a number of different ways;
