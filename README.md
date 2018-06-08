@@ -2,7 +2,7 @@ Helper scripts to demonstrate data authorization in a MapR Cluster
 
 1.  Unzip the business.json.gzip file 'gunzip business.json.zip'
 
-2.  If needed, run the setup-user.sh script to add a user and group 'user1:group1' - not necessary if you have other users configured.
+2.  If needed, run the setup-user.sh script to add a user and group 'user1:group1' - not necessary if you have other users configured in the cluster.
 
 3.  Modify the setup-data.sh script - replace the IP address in the sqlline command with one of the drillbit IPs for your cluster
 
